@@ -46,25 +46,52 @@ namespace CalculadoraCSv2
         }
 
 
-        private void getTextButton(object sender, EventArgs e)
+
+        /// Metodo para los operadores.
+        private void getTextButtonOperator(object sender, EventArgs e)
         {
+            /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
+            var btn = (Button)sender;
+
             ///Evitamos poder poner primero un operador.
             if (labelContador.Text != "0")
             {
-
-                /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
-                var btn = (Button)sender;
-
-                /// TODO - EJECUTAR METODO PARA MOSTRAR EN PANTALLA 
+                /// TODO - EJECUTAR METODO " changeLabelResult " PARA MOSTRAR EN PANTALLA 
                 /// Almacenamos el valor en nuestro Model.
                 Operacion.operador = btn.Text;
             }
         }
 
-        private void boton_division_Click(object sender, EventArgs e)
+        private void boton_igual_Click(object sender, EventArgs e)
         {
 
         }
+
+
+        /// Metodo para los botones numericos.
+
+        private void getTextButtonNumbers (object sender, EventArgs e)
+        {
+            /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
+            var btn = (Button)sender;
+
+
+            /*Si el contador, NO posee una "," (Debido a que ya pusimos una antes)
+              no pondra otra coma mas.*/
+            if (btn.Text == "," && !contador.Contains(","))
+            {
+                changeLabelContador(btn.Text);
+            }
+            else
+            {
+                /* Resto de botones */
+                changeLabelContador(btn.Text);
+            }
+        }
+
+
+
+        ////////////////////
 
         private void boton_negacion_Click(object sender, EventArgs e)
         {
@@ -81,79 +108,5 @@ namespace CalculadoraCSv2
 
         }
 
-        private void boton_7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_multi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_resta_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_suma_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_igual_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_coma_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boton_0_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -103,7 +103,7 @@ namespace CalculadoraCSv2
             this.boton_division.Text = "➗";
             this.boton_division.UseVisualStyleBackColor = false;
             this.boton_division.UseWaitCursor = true;
-            this.boton_division.Click += new System.EventHandler(this.getTextButton);
+            this.boton_division.Click += new System.EventHandler(this.getTextButtonOperator);
             // 
             // boton_delete
             // 
@@ -170,7 +170,7 @@ namespace CalculadoraCSv2
             this.boton_multi.Text = "✖";
             this.boton_multi.UseVisualStyleBackColor = false;
             this.boton_multi.UseWaitCursor = true;
-            this.boton_multi.Click += new System.EventHandler(this.getTextButton);
+            this.boton_multi.Click += new System.EventHandler(this.getTextButtonOperator);
             // 
             // boton_resta
             // 
@@ -185,7 +185,7 @@ namespace CalculadoraCSv2
             this.boton_resta.Text = "➖";
             this.boton_resta.UseVisualStyleBackColor = false;
             this.boton_resta.UseWaitCursor = true;
-            this.boton_resta.Click += new System.EventHandler(this.getTextButton);
+            this.boton_resta.Click += new System.EventHandler(this.getTextButtonOperator);
             // 
             // boton_9
             // 
@@ -200,7 +200,7 @@ namespace CalculadoraCSv2
             this.boton_9.Text = "9";
             this.boton_9.UseVisualStyleBackColor = false;
             this.boton_9.UseWaitCursor = true;
-            this.boton_9.Click += new System.EventHandler(this.boton_9_Click);
+            this.boton_9.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_6
             // 
@@ -215,7 +215,7 @@ namespace CalculadoraCSv2
             this.boton_6.Text = "6";
             this.boton_6.UseVisualStyleBackColor = false;
             this.boton_6.UseWaitCursor = true;
-            this.boton_6.Click += new System.EventHandler(this.boton_6_Click);
+            this.boton_6.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_8
             // 
@@ -230,7 +230,7 @@ namespace CalculadoraCSv2
             this.boton_8.Text = "8";
             this.boton_8.UseVisualStyleBackColor = false;
             this.boton_8.UseWaitCursor = true;
-            this.boton_8.Click += new System.EventHandler(this.boton_8_Click);
+            this.boton_8.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_5
             // 
@@ -245,7 +245,7 @@ namespace CalculadoraCSv2
             this.boton_5.Text = "5";
             this.boton_5.UseVisualStyleBackColor = false;
             this.boton_5.UseWaitCursor = true;
-            this.boton_5.Click += new System.EventHandler(this.boton_5_Click);
+            this.boton_5.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_7
             // 
@@ -260,7 +260,7 @@ namespace CalculadoraCSv2
             this.boton_7.Text = "7";
             this.boton_7.UseVisualStyleBackColor = false;
             this.boton_7.UseWaitCursor = true;
-            this.boton_7.Click += new System.EventHandler(this.boton_7_Click);
+            this.boton_7.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_4
             // 
@@ -275,7 +275,7 @@ namespace CalculadoraCSv2
             this.boton_4.Text = "4";
             this.boton_4.UseVisualStyleBackColor = false;
             this.boton_4.UseWaitCursor = true;
-            this.boton_4.Click += new System.EventHandler(this.boton_4_Click);
+            this.boton_4.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_suma
             // 
@@ -290,7 +290,7 @@ namespace CalculadoraCSv2
             this.boton_suma.Text = "➕";
             this.boton_suma.UseVisualStyleBackColor = false;
             this.boton_suma.UseWaitCursor = true;
-            this.boton_suma.Click += new System.EventHandler(this.getTextButton);
+            this.boton_suma.Click += new System.EventHandler(this.getTextButtonOperator);
             // 
             // boton_3
             // 
@@ -305,7 +305,7 @@ namespace CalculadoraCSv2
             this.boton_3.Text = "3";
             this.boton_3.UseVisualStyleBackColor = false;
             this.boton_3.UseWaitCursor = true;
-            this.boton_3.Click += new System.EventHandler(this.boton_3_Click);
+            this.boton_3.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_2
             // 
@@ -320,7 +320,7 @@ namespace CalculadoraCSv2
             this.boton_2.Text = "2";
             this.boton_2.UseVisualStyleBackColor = false;
             this.boton_2.UseWaitCursor = true;
-            this.boton_2.Click += new System.EventHandler(this.boton_2_Click);
+            this.boton_2.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_1
             // 
@@ -335,7 +335,7 @@ namespace CalculadoraCSv2
             this.boton_1.Text = "1";
             this.boton_1.UseVisualStyleBackColor = false;
             this.boton_1.UseWaitCursor = true;
-            this.boton_1.Click += new System.EventHandler(this.boton_1_Click);
+            this.boton_1.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_igual
             // 
@@ -367,7 +367,7 @@ namespace CalculadoraCSv2
             this.boton_coma.Text = ",";
             this.boton_coma.UseVisualStyleBackColor = false;
             this.boton_coma.UseWaitCursor = true;
-            this.boton_coma.Click += new System.EventHandler(this.boton_coma_Click);
+            this.boton_coma.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_0
             // 
@@ -382,7 +382,7 @@ namespace CalculadoraCSv2
             this.boton_0.Text = "0";
             this.boton_0.UseVisualStyleBackColor = false;
             this.boton_0.UseWaitCursor = true;
-            this.boton_0.Click += new System.EventHandler(this.boton_0_Click);
+            this.boton_0.Click += new System.EventHandler(this.getTextButtonNumbers);
             // 
             // boton_negacion
             // 
