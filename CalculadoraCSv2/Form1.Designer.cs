@@ -103,7 +103,7 @@ namespace CalculadoraCSv2
             this.boton_division.Text = "➗";
             this.boton_division.UseVisualStyleBackColor = false;
             this.boton_division.UseWaitCursor = true;
-            this.boton_division.Click += new System.EventHandler(this.boton_division_Click);
+            this.boton_division.Click += new System.EventHandler(this.getTextButton);
             // 
             // boton_delete
             // 
@@ -170,7 +170,7 @@ namespace CalculadoraCSv2
             this.boton_multi.Text = "✖";
             this.boton_multi.UseVisualStyleBackColor = false;
             this.boton_multi.UseWaitCursor = true;
-            this.boton_multi.Click += new System.EventHandler(this.boton_multi_Click);
+            this.boton_multi.Click += new System.EventHandler(this.getTextButton);
             // 
             // boton_resta
             // 
@@ -185,7 +185,7 @@ namespace CalculadoraCSv2
             this.boton_resta.Text = "➖";
             this.boton_resta.UseVisualStyleBackColor = false;
             this.boton_resta.UseWaitCursor = true;
-            this.boton_resta.Click += new System.EventHandler(this.boton_resta_Click);
+            this.boton_resta.Click += new System.EventHandler(this.getTextButton);
             // 
             // boton_9
             // 
@@ -290,7 +290,7 @@ namespace CalculadoraCSv2
             this.boton_suma.Text = "➕";
             this.boton_suma.UseVisualStyleBackColor = false;
             this.boton_suma.UseWaitCursor = true;
-            this.boton_suma.Click += new System.EventHandler(this.boton_suma_Click);
+            this.boton_suma.Click += new System.EventHandler(this.getTextButton);
             // 
             // boton_3
             // 
@@ -405,14 +405,14 @@ namespace CalculadoraCSv2
             this.dataTableOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableOperations.Location = new System.Drawing.Point(249, 75);
             this.dataTableOperations.Name = "dataTableOperations";
-            this.dataTableOperations.Size = new System.Drawing.Size(116, 233);
+            this.dataTableOperations.Size = new System.Drawing.Size(214, 233);
             this.dataTableOperations.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 450);
+            this.ClientSize = new System.Drawing.Size(491, 450);
             this.Controls.Add(this.dataTableOperations);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";

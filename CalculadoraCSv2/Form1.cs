@@ -21,12 +21,45 @@ namespace CalculadoraCSv2
         public Form1()
         {
             InitializeComponent();
+
+            dataTableOperations.DataSource = ListaOperaciones.DTOperaciones;
         }
 
 
- 
+        /// VARIABLES FRONT
+        string contador = ""; /// Label primario
+        string acumulador = ""; /// Label post resultado
 
 
+
+        /// METODOS FRONT
+
+        /// 1) Metodo que permite plasmar el valor del boton en el primer label.
+        private void changeLabelContador(string BtnText)
+        {
+            if (acumulador != "")
+            { /// Si ya hemos escrito algo previamente, nos borrara el contenido y escribira lo nuevo.
+                labelContador.Text = "";
+            }
+            contador += BtnText;
+            labelContador.Text = contador;
+        }
+
+
+        private void getTextButton(object sender, EventArgs e)
+        {
+            ///Evitamos poder poner primero un operador.
+            if (labelContador.Text != "0")
+            {
+
+                /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
+                var btn = (Button)sender;
+
+                /// TODO - EJECUTAR METODO PARA MOSTRAR EN PANTALLA 
+                /// Almacenamos el valor en nuestro Model.
+                Operacion.operador = btn.Text;
+            }
+        }
 
         private void boton_division_Click(object sender, EventArgs e)
         {
