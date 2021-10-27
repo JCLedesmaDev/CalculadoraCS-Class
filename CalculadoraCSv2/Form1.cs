@@ -22,7 +22,6 @@ namespace CalculadoraCSv2
             operador = "",
             resultado = 0,
         };
-        //public OperacionModel Operacion { get; set; } = new OperacionModel();
 
         public Form1()
         {
@@ -92,8 +91,11 @@ namespace CalculadoraCSv2
                 showOperation(Operacion.operador);
             }
         }
+
+        /// TODO - COMPLETAR
         private void showOperation(string BtnOperador)
         {
+
 
             /// Se valida aca, cuando ingresamos el primer numero de la primera operacion
             if (acumulador == "")
@@ -110,7 +112,7 @@ namespace CalculadoraCSv2
             }
 
             /// Se valida aca, cuando ingresamos el segundo numero de la primera operacion
-            if (acumulador != "")
+            if (acumulador != "" && Operacion.resultado == 0)
             {
                 acumulador = acumulador + " " + contador + " " + BtnOperador;
 
@@ -122,14 +124,11 @@ namespace CalculadoraCSv2
                 return;
             }
 
-            /// TODO - En caso de que hayamos hehco una operacion y queramos continuar
-            /*else if (acumulador != "" && resultado != "")
+            /// TODO - En caso de que hayamos hecho una operacion y queramos continuar
+            if (acumulador != "" && Operacion.resultado != 0)
             {
-                labelResult.Text = resultado + " " + BtnOperador;
-            }*/
-
-
-
+                labelResult.Text = Operacion.resultado + " " + BtnOperador;
+            }
         }
         private void showScreen(string acumulador)
         {
@@ -174,10 +173,10 @@ namespace CalculadoraCSv2
             /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
             var btn = (Button)sender;
 
-            /*try
+            try
             {
                 /// Si no escribimos nada, no se ejecuta el igual.
-                if (Operacion.primerNumero == 0 && Operacion.operador == "")
+                if (Operacion.validationOperation())
                 {
                     throw new Exception("Ingrese 2 numeros y operador.");
                 }
@@ -186,31 +185,36 @@ namespace CalculadoraCSv2
                 showOperation(btn.Text);
 
 
-                if (resultado == "")
+                if (Operacion.resultado == 0)
                 { /// Se ejecuta cuando obtenemos un primer resultado.
-                    calculateOperation(
-                        operador,
-                        primerNumero,
-                        segundoNumero
-                    );
+                    ListaOperaciones.calculateOperation(Operacion);
+                    Operacion.primerNumero = 0;
+                    Operacion.operador = "";
+                    Operacion.segundoNumero = 0;
                 }
-                else
+
+                /* TODO - COMPLETAR FUNCION PARA SEGUIR SUMANDO LUEGO DE PRIMERA SUMA */
+                
+                /*if(Operacion.resultado != "")
                 { /// Se ejecuta cuando sumamos un valor al resultado ya obtenido.
-                    labelResult.Text = resultado + " " + operador + " " + contador + " " + boton_igual.Text;
-                    calculateOperation(
-                        operador,
-                        System.Convert.ToSingle(resultado),
-                        System.Convert.ToSingle(contador)
-                    );
-                }
+                    labelResult.Text = Operacion.resultado + " " + Operacion.operador + " " + contador + " " + btn.Text;
+
+                    Operacion.primerNumero = System.Convert.ToInt32(Operacion.resultado);
+                    Operacion.operador = Operacion.operador;
+                    Operacion.segundoNumero = System.Convert.ToInt32(contador);
+
+                    ListaOperaciones.calculateOperation(Operacion);
+
+                }*/
+
                 contador = ""; /// Permite escribir nuevamente un numero de 0.
-                labelContador.Text = resultado;
+                labelContador.Text = Operacion.resultado.ToString();
 
             }
             catch (Exception error)
             {
                 labelResult.Text = error.Message.ToString();
-            }*/
+            }
 
         }
         /* OBSERVAR */

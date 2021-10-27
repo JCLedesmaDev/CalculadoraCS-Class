@@ -13,9 +13,19 @@ namespace CalculadoraCSv2.ClassModels
         public float segundoNumero;
         public string operador;
         public float resultado;
+
+
+
+        // METODOS DE VALIDACIONES
+        public bool validationOperation()
+        {
+            bool error = false;
+            if (primerNumero == 0 && operador == "")
+            {
+               error = true;
+            }
+            return error;
+        }
+
     }
-
-    // METODOS DE VALIDACIONES
-
-
 }

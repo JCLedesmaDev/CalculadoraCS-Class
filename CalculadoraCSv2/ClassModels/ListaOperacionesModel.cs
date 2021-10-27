@@ -59,32 +59,36 @@ namespace CalculadoraCSv2.ClassModels
 
 
         ///Calcula la operacion en cuestion
-        public string calculateOperation(OperacionModel operacion)
+        public void calculateOperation(OperacionModel operacion)
         {
 
-            /*switch (Operator)
-            {
+           switch (operacion.operador)
+           {
                 case "➕":
-                    resultado = System.Convert.ToString(numero1 + numero2);
-                    break;
+                    operacion.resultado = operacion.primerNumero + operacion.segundoNumero;
+
+                    break;  
+
                 case "➖":
-                    resultado = System.Convert.ToString( numero1 - numero2);
+                    operacion.resultado = operacion.primerNumero - operacion.segundoNumero;
                     break;
 
                 case "✖":
-                    resultado = System.Convert.ToString(numero1 * numero2);
+                    operacion.resultado = operacion.primerNumero * operacion.segundoNumero;
                     break;
 
                 case "➗":
-                    resultado = System.Convert.ToString(numero1 / numero2);
+                    operacion.resultado = operacion.primerNumero / operacion.segundoNumero;
                     break;
 
                 default:
                     break;
-            }*/
-
-            return "";
+           }
         }
+
+
+        /// TODO - AGREGAR RESULTADO OPERACION A DT.
+
 
 
         /// Obtiene Lista de Operaciones.
