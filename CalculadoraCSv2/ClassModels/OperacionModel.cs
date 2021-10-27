@@ -9,10 +9,10 @@ namespace CalculadoraCSv2.ClassModels
     public class OperacionModel
     {
         public int _id;
-        public int primerNumero;
-        public int segundoNumero;
+        public float primerNumero;
+        public float segundoNumero;
         public string operador;
-        public int resultado;
+        public float resultado;
     }
 
     // METODOS DE VALIDACIONES
