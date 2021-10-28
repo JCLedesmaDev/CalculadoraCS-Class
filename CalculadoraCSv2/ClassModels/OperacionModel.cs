@@ -13,6 +13,7 @@ namespace CalculadoraCSv2.ClassModels
         public float segundoNumero;
         public string operador;
         public float resultado;
+        public string calculo;
 
 
 

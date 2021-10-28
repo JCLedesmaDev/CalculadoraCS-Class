@@ -20,7 +20,7 @@ namespace CalculadoraCSv2.ClassModels
         {
             DTOperaciones.TableName = "Lista operaciones";
             DTOperaciones.Columns.Add("Id");
-            DTOperaciones.Columns.Add("operacion");
+            DTOperaciones.Columns.Add("Operacion");
 
             verifyFileDTOperaciones();
         }
@@ -84,10 +84,24 @@ namespace CalculadoraCSv2.ClassModels
                 default:
                     break;
            }
+
+            operacion.calculo = $"{operacion.primerNumero} {operacion.operador} {operacion.segundoNumero} = {operacion.resultado}";
+            addOperation(operacion);
         }
 
 
-        /// TODO - AGREGAR RESULTADO OPERACION A DT.
+        private void addOperation (OperacionModel operacion)
+        {
+            ultimo_id = ultimo_id + 1;
+            DTOperaciones.Rows.Add();
+            int NumeroRegistro = DTOperaciones.Rows.Count - 1;
+
+            DTOperaciones.Rows[NumeroRegistro]["Id"] = (ultimo_id).ToString();
+            DTOperaciones.Rows[NumeroRegistro]["Operacion"] = operacion.calculo;
+
+            // TODO - DTOperaciones.WriteXml("ListaOperaciones.xml");
+        }
+
 
 
 

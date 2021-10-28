@@ -195,7 +195,7 @@ namespace CalculadoraCSv2
 
                 /* TODO - COMPLETAR FUNCION PARA SEGUIR SUMANDO LUEGO DE PRIMERA SUMA */
                 
-                /*if(Operacion.resultado != "")
+                /*if(Operacion.resultado != 0)
                 { /// Se ejecuta cuando sumamos un valor al resultado ya obtenido.
                     labelResult.Text = Operacion.resultado + " " + Operacion.operador + " " + contador + " " + btn.Text;
 
