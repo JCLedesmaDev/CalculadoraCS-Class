@@ -99,7 +99,7 @@ namespace CalculadoraCSv2.ClassModels
             DTOperaciones.Rows[NumeroRegistro]["Id"] = (ultimo_id).ToString();
             DTOperaciones.Rows[NumeroRegistro]["Operacion"] = operacion.calculo;
 
-            // TODO - DTOperaciones.WriteXml("ListaOperaciones.xml");
+            DTOperaciones.WriteXml("ListaOperaciones.xml");
         }
 
 

@@ -19,6 +19,7 @@ namespace CalculadoraCSv2
             segundoNumero = 0,
             operador = "",
             resultado = 0,
+            calculo = "",
         };
 
         public Form1()
@@ -31,7 +32,6 @@ namespace CalculadoraCSv2
         string contador = ""; /// Contendra los valores numericos proveniente de "getNumbers"
         string calculo = ""; /// Contentra la operacion en cuestion (valores numericos + operadores)
 
-
         #region Obtenemos los valores numericos y los mostramos en pantalla.
 
         private void getNumbers(object sender, EventArgs e)
@@ -43,16 +43,15 @@ namespace CalculadoraCSv2
               no pondra otra coma mas.*/
             if (btn.Text == "," && !contador.Contains(","))
             {
-                showNumberScreen(btn.Text);
+                showNumberInScreen(btn.Text);
             }
             if (btn.Text != ",")
             {
                 /* Resto de botones */
-                showNumberScreen(btn.Text);
+                showNumberInScreen(btn.Text);
             }
         }
-      
-        private void showNumberScreen(string BtnText)
+        private void showNumberInScreen(string BtnText)
         {
             /// Mostrar numeros en pantalla y almacenar en "contador".
             if (calculo != "")
@@ -64,10 +63,6 @@ namespace CalculadoraCSv2
         }
 
         #endregion
-
-
-        /* ---------------------------------------------------------  */
-
 
         #region Obtenemos el "operador" de la operacion y lo almacenamos con "contador" en "calculo"
        
@@ -84,7 +79,6 @@ namespace CalculadoraCSv2
                 addOperatorToCalcule(Operacion.operador);
             }
         }
-
         private void addOperatorToCalcule(string BtnOperador)
         {
             ///Agregamos el operador al primer termino de nuestra operacion. 
@@ -115,26 +109,14 @@ namespace CalculadoraCSv2
                 return;
             }
 
-            /* 
-             En caso de que hayamos hecho una operacion y queramos continuar. Nos aparecera el 
-             resultado de la  primera operacion seguido del OPERADOR en cuestion   
-            */
-            /*if (calculo != "" && Operacion.resultado != 0)
+            /* En caso de que hayamos hecho una operacion y queramos continuar. Nos aparecera el 
+             resultado de la  primera operacion seguido del OPERADOR en cuestion */
+            if (calculo != "" && Operacion.resultado != 0)
              {
-                 calculo = Operacion.resultado + " " + Operacion.operador + " " + contador;
-
-                 //showScreen("asdas"); // POR ACA PASA
-                 showScreen(calculo);
-                 /* 
-
-                     labelResult.Text = Operacion.resultado + " " + Operacion.operador + " " + contador + " " + btn.Text;
-
-                     Operacion.primerNumero = System.Convert.ToInt32(Operacion.resultado);
-                     Operacion.operador = Operacion.operador;
-                     Operacion.segundoNumero = System.Convert.ToInt32(contador);
-
-                  */
-            //}
+                calculo = Operacion.resultado + " " + Operacion.operador;
+                labelResult.Text = calculo;
+                return;
+            }
         }
         private void showCalculeInScreen(string calculo)
         {
@@ -144,9 +126,6 @@ namespace CalculadoraCSv2
 
         #endregion
 
-
-
-        /* OBSERVAR */
         private void boton_igual_Click (object sender, EventArgs e)
         {
             /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
@@ -160,27 +139,20 @@ namespace CalculadoraCSv2
                     throw new Exception("Ingrese 2 numeros y operador.");
                 }
 
-                /// Caso de que hayamos escrito un numero y un operador, SI.
                 addOperatorToCalcule(btn.Text);
 
+                if (Operacion.resultado == 0)
+                {
+                    doOperation(Operacion);
+                }
+                else{
 
-                //if (Operacion.resultado == 0)
-                //{ /// Se ejecuta cuando obtenemos un primer resultado.
-                    ListaOperaciones.calculateOperation(Operacion);
-                    Operacion.primerNumero = 0;
-                    Operacion.operador = "";
-                    Operacion.segundoNumero = 0;
-                //}
+                    Operacion.primerNumero = System.Convert.ToInt32(Operacion.resultado);
+                    Operacion.operador = Operacion.operador;
+                    Operacion.segundoNumero = System.Convert.ToInt32(contador);
 
-                /* TODO - COMPLETAR FUNCION PARA SEGUIR SUMANDO LUEGO DE PRIMERA SUMA */
-                
-                /*if(Operacion.resultado != 0)
-                { /// Se ejecuta cuando sumamos un valor al resultado ya obtenido.
-                    ListaOperaciones.calculateOperation(Operacion);
-                    Operacion.primerNumero = 0;
-                    Operacion.operador = "";
-                    Operacion.segundoNumero = 0;
-                }*/
+                    doOperation(Operacion);
+                }
 
                 contador = ""; /// Permite escribir nuevamente un numero de 0.
                 labelContador.Text = Operacion.resultado.ToString();
@@ -190,12 +162,21 @@ namespace CalculadoraCSv2
             {
                 labelResult.Text = error.Message.ToString();
             }
-
         }
-        /* OBSERVAR */
+        private void doOperation (OperacionModel Operacion)
+        {
+            ListaOperaciones.calculateOperation(Operacion);
+            Operacion.primerNumero = 0;
+            Operacion.operador = "";
+            Operacion.segundoNumero = 0;
+            Operacion.calculo = "";
+        }
+
+        /// TODO - Implementar que al poner un valor + otro valor y darle click a otro operador, haga su respectivo calculo.
+        /// TODO - Observar que se pueda seguir un flujo de operaciones basicas (sumar a un resultado y a ese resultado sumar otra vez)
+        /// TODO - Implementar: Eliminar registro; Obtener un registro en especifico.
 
 
-        /* ---------------------------------------------------------  */
 
         #region Botones particulares 
         /* Metodos puramente de Front - Edicion de labels */
