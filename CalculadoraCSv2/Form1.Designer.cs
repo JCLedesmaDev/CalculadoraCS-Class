@@ -30,6 +30,7 @@ namespace CalculadoraCSv2
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.boton_division = new System.Windows.Forms.Button();
             this.boton_delete = new System.Windows.Forms.Button();
             this.boton_clear = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@ namespace CalculadoraCSv2
             this.panel1.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.boton_division);
             this.panel1.Controls.Add(this.boton_delete);
             this.panel1.Controls.Add(this.boton_clear);
@@ -89,6 +91,21 @@ namespace CalculadoraCSv2
             this.panel1.Size = new System.Drawing.Size(189, 233);
             this.panel1.TabIndex = 1;
             this.panel1.UseWaitCursor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.button1.CausesValidation = false;
+            this.button1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.button1.Location = new System.Drawing.Point(11, 87);
+            this.button1.Margin = new System.Windows.Forms.Padding(1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(40, 25);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "🔍";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.UseWaitCursor = true;
+            this.button1.Click += new System.EventHandler(this.boton_history);
             // 
             // boton_division
             // 
@@ -377,7 +394,7 @@ namespace CalculadoraCSv2
             this.boton_0.Location = new System.Drawing.Point(11, 195);
             this.boton_0.Margin = new System.Windows.Forms.Padding(1);
             this.boton_0.Name = "boton_0";
-            this.boton_0.Size = new System.Drawing.Size(82, 25);
+            this.boton_0.Size = new System.Drawing.Size(40, 25);
             this.boton_0.TabIndex = 1;
             this.boton_0.Text = "0";
             this.boton_0.UseVisualStyleBackColor = false;
@@ -390,7 +407,7 @@ namespace CalculadoraCSv2
             this.boton_negacion.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.boton_negacion.CausesValidation = false;
             this.boton_negacion.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.boton_negacion.Location = new System.Drawing.Point(11, 87);
+            this.boton_negacion.Location = new System.Drawing.Point(53, 195);
             this.boton_negacion.Margin = new System.Windows.Forms.Padding(1);
             this.boton_negacion.Name = "boton_negacion";
             this.boton_negacion.Size = new System.Drawing.Size(40, 25);
@@ -402,10 +419,13 @@ namespace CalculadoraCSv2
             // 
             // dataTableOperations
             // 
+            this.dataTableOperations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataTableOperations.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataTableOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTableOperations.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataTableOperations.Location = new System.Drawing.Point(249, 75);
             this.dataTableOperations.Name = "dataTableOperations";
-            this.dataTableOperations.Size = new System.Drawing.Size(214, 233);
+            this.dataTableOperations.Size = new System.Drawing.Size(183, 233);
             this.dataTableOperations.TabIndex = 2;
             // 
             // Form1
@@ -448,6 +468,7 @@ namespace CalculadoraCSv2
         private System.Windows.Forms.Button boton_0;
         private System.Windows.Forms.Button boton_negacion;
         private System.Windows.Forms.DataGridView dataTableOperations;
+        private System.Windows.Forms.Button button1;
     }
 }
 

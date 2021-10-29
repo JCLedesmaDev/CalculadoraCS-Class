@@ -202,6 +202,11 @@ namespace CalculadoraCSv2
             contador = "";
             calculo = "";
 
+            Operacion.primerNumero = 0;
+            Operacion.operador = "";
+            Operacion.segundoNumero = 0;
+            Operacion.calculo = "";
+
             labelContador.Text = "0";
             labelResult.Text = "";
         }
@@ -218,5 +223,17 @@ namespace CalculadoraCSv2
             }
         }
         #endregion
+
+        private void boton_history(object sender, EventArgs e)
+        {
+            if (dataTableOperations.Visible == true)
+            {
+                dataTableOperations.Visible = false;
+            }
+            else
+            {
+                dataTableOperations.Visible = true;
+            }
+        }
     }
 }
