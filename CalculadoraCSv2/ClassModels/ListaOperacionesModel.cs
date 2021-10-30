@@ -28,7 +28,6 @@ namespace CalculadoraCSv2.ClassModels
         /* Verificamos la existencia de nuestro archivo .xml */
         public void verifyFileDTOperaciones()
         {
-
             if (System.IO.File.Exists("ListaOperaciones.xml"))
             {
                 // Lo lee
@@ -38,6 +37,7 @@ namespace CalculadoraCSv2.ClassModels
                 ultimo_id = getLastId(DTOperaciones, ultimo_id);
             }
         }
+
 
         public int getLastId(DataTable table, int id)
         {
@@ -51,17 +51,9 @@ namespace CalculadoraCSv2.ClassModels
             }
             return numberId;
         }
-
-
-
-
-        ///////////////////////////////////////////////////////
-
-
-        ///Calcula la operacion en cuestion
+       
         public void calculateOperation(OperacionModel operacion)
         {
-
            switch (operacion.operador)
            {
                 case "➕":
@@ -88,8 +80,7 @@ namespace CalculadoraCSv2.ClassModels
             operacion.calculo = $"{operacion.primerNumero} {operacion.operador} {operacion.segundoNumero} = {operacion.resultado}";
             addOperation(operacion);
         }
-
-
+       
         private void addOperation (OperacionModel operacion)
         {
             ultimo_id = ultimo_id + 1;
@@ -105,10 +96,25 @@ namespace CalculadoraCSv2.ClassModels
 
 
 
-        /// Obtiene Lista de Operaciones.
-        public void getListOperations()
+        public void delete (string mode, string calculo)
         {
-
+            if (mode == "clearTable")
+            {
+                DTOperaciones.Rows.Clear();
+                DTOperaciones.WriteXml("ListaOperaciones.xml");
+                ultimo_id = 0;
+            }
+            else
+            {
+                for (int i = 0; i < DTOperaciones.Rows.Count; i++)
+                {
+                    if (DTOperaciones.Rows[i]["Operacion"].ToString() == calculo)
+                    {
+                        DTOperaciones.Rows[i].Delete();
+                        DTOperaciones.WriteXml("LListaOperacionesista.xml");
+                    }
+                }
+            }
         }
 
         /// Seleccionar operaicon en particular

@@ -53,6 +53,7 @@ namespace CalculadoraCSv2
             this.boton_0 = new System.Windows.Forms.Button();
             this.boton_negacion = new System.Windows.Forms.Button();
             this.dataTableOperations = new System.Windows.Forms.DataGridView();
+            this.botonDelete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableOperations)).BeginInit();
             this.SuspendLayout();
@@ -419,20 +420,40 @@ namespace CalculadoraCSv2
             // 
             // dataTableOperations
             // 
-            this.dataTableOperations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataTableOperations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableOperations.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataTableOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableOperations.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataTableOperations.Location = new System.Drawing.Point(249, 75);
             this.dataTableOperations.Name = "dataTableOperations";
-            this.dataTableOperations.Size = new System.Drawing.Size(183, 233);
+            this.dataTableOperations.ReadOnly = true;
+            this.dataTableOperations.Size = new System.Drawing.Size(137, 206);
             this.dataTableOperations.TabIndex = 2;
+            this.dataTableOperations.Visible = false;
+            this.dataTableOperations.Click += new System.EventHandler(this.getOneOperation);
+            // 
+            // botonDelete
+            // 
+            this.botonDelete.BackColor = System.Drawing.Color.Tan;
+            this.botonDelete.CausesValidation = false;
+            this.botonDelete.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.botonDelete.Location = new System.Drawing.Point(249, 283);
+            this.botonDelete.Margin = new System.Windows.Forms.Padding(1);
+            this.botonDelete.Name = "botonDelete";
+            this.botonDelete.Size = new System.Drawing.Size(137, 25);
+            this.botonDelete.TabIndex = 6;
+            this.botonDelete.Text = "🗑️";
+            this.botonDelete.UseVisualStyleBackColor = false;
+            this.botonDelete.UseWaitCursor = true;
+            this.botonDelete.Visible = false;
+            this.botonDelete.Click += new System.EventHandler(this.boton_delete_history);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 450);
+            this.Controls.Add(this.botonDelete);
             this.Controls.Add(this.dataTableOperations);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -469,6 +490,7 @@ namespace CalculadoraCSv2
         private System.Windows.Forms.Button boton_negacion;
         private System.Windows.Forms.DataGridView dataTableOperations;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button botonDelete;
     }
 }
 

@@ -14,7 +14,7 @@ namespace CalculadoraCSv2
     public partial class Form1 : Form
     {
         public ListaOperacionesModel ListaOperaciones { get; set; } = new ListaOperacionesModel();
-        public OperacionModel Operacion { get; set; } = new OperacionModel { 
+        public OperacionModel Operacion { get; set; } = new OperacionModel {
             primerNumero = 0,
             segundoNumero = 0,
             operador = "",
@@ -26,6 +26,9 @@ namespace CalculadoraCSv2
         {
             InitializeComponent();
             dataTableOperations.DataSource = ListaOperaciones.DTOperaciones;
+
+            // Ocultamos la columna del Id
+            dataTableOperations.Columns["Id"].Visible = false;
         }
 
         /* VARIABLES FRONT */
@@ -65,7 +68,7 @@ namespace CalculadoraCSv2
         #endregion
 
         #region Obtenemos el "operador" de la operacion y lo almacenamos con "contador" en "calculo"
-       
+
         /* Metodo para los operadores (+ - * /).*/
         private void getOperator(object sender, EventArgs e)
         {
@@ -112,7 +115,7 @@ namespace CalculadoraCSv2
             /* En caso de que hayamos hecho una operacion y queramos continuar. Nos aparecera el 
              resultado de la  primera operacion seguido del OPERADOR en cuestion */
             if (calculo != "" && Operacion.resultado != 0)
-             {
+            {
                 calculo = Operacion.resultado + " " + Operacion.operador;
                 labelResult.Text = calculo;
                 return;
@@ -126,7 +129,7 @@ namespace CalculadoraCSv2
 
         #endregion
 
-        private void boton_igual_Click (object sender, EventArgs e)
+        private void boton_igual_Click(object sender, EventArgs e)
         {
             /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
             var btn = (Button)sender;
@@ -145,7 +148,7 @@ namespace CalculadoraCSv2
                 {
                     doOperation(Operacion);
                 }
-                else{
+                else {
 
                     Operacion.primerNumero = System.Convert.ToInt32(Operacion.resultado);
                     Operacion.operador = Operacion.operador;
@@ -163,7 +166,7 @@ namespace CalculadoraCSv2
                 labelResult.Text = error.Message.ToString();
             }
         }
-        private void doOperation (OperacionModel Operacion)
+        private void doOperation(OperacionModel Operacion)
         {
             ListaOperaciones.calculateOperation(Operacion);
             Operacion.primerNumero = 0;
@@ -171,11 +174,6 @@ namespace CalculadoraCSv2
             Operacion.segundoNumero = 0;
             Operacion.calculo = "";
         }
-
-        /// TODO - Implementar que al poner un valor + otro valor y darle click a otro operador, haga su respectivo calculo.
-        /// TODO - Observar que se pueda seguir un flujo de operaciones basicas (sumar a un resultado y a ese resultado sumar otra vez)
-        /// TODO - Implementar: Eliminar registro; Obtener un registro en especifico.
-
 
 
         #region Botones particulares 
@@ -205,11 +203,13 @@ namespace CalculadoraCSv2
             Operacion.primerNumero = 0;
             Operacion.operador = "";
             Operacion.segundoNumero = 0;
+            Operacion.resultado = 0;
             Operacion.calculo = "";
 
             labelContador.Text = "0";
             labelResult.Text = "";
         }
+
         private void boton_delete_Click(object sender, EventArgs e)
         {
             if (contador.Length != 0)
@@ -222,17 +222,61 @@ namespace CalculadoraCSv2
                 labelContador.Text = "0";
             }
         }
-        #endregion
 
         private void boton_history(object sender, EventArgs e)
         {
-            if (dataTableOperations.Visible == true)
+            if (dataTableOperations.Visible == true && botonDelete.Visible == true)
             {
                 dataTableOperations.Visible = false;
+                botonDelete.Visible = false;
             }
             else
             {
                 dataTableOperations.Visible = true;
+                botonDelete.Visible = true;
+            }
+        }
+
+        private void boton_delete_history(object sender, EventArgs e)
+        {
+            /// Si no se selecciono ninguna opcion, se elimina todos.
+            if (dataTableOperations.CurrentCell.Value.ToString() == "")
+            {
+                ListaOperaciones.delete("clearTable", "");
+            }
+            else
+            {
+                //labelContador.Text = dataTableOperations.CurrentCell.Value.ToString();
+                ListaOperaciones.delete(
+                    "deleteOperation",
+                    dataTableOperations.CurrentCell.Value.ToString() // Valor seleccionado.
+                );
+            }
+            boton_clear_Click(sender, e);
+        }
+
+
+
+        /// TODO - Error al finalizar un calculo y querer escribir un numero para emepzar de 0 
+        /// TODO - Al escribir una operacion, darle + otro numero y otro +, no funca.
+
+        #endregion
+
+        private void getOneOperation(object sender, EventArgs e)
+        {
+            string operacion = dataTableOperations.CurrentCell.Value.ToString();
+
+            if (operacion != "")
+            {
+                int longTotal = operacion.Length;
+                int textoCortado = operacion.IndexOf("=") + 2;
+
+                labelResult.Text = operacion.Substring(0, textoCortado);
+                showNumberInScreen(operacion.Substring(textoCortado, longTotal - textoCortado));
+            }
+            else
+            {
+                labelResult.Text = "";
             }
         }
     }
