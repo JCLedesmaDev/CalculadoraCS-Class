@@ -427,7 +427,7 @@ namespace CalculadoraCSv2
             this.dataTableOperations.Location = new System.Drawing.Point(249, 75);
             this.dataTableOperations.Name = "dataTableOperations";
             this.dataTableOperations.ReadOnly = true;
-            this.dataTableOperations.Size = new System.Drawing.Size(137, 206);
+            this.dataTableOperations.Size = new System.Drawing.Size(164, 206);
             this.dataTableOperations.TabIndex = 2;
             this.dataTableOperations.Visible = false;
             this.dataTableOperations.Click += new System.EventHandler(this.getOneOperation);
@@ -440,7 +440,7 @@ namespace CalculadoraCSv2
             this.botonDelete.Location = new System.Drawing.Point(249, 283);
             this.botonDelete.Margin = new System.Windows.Forms.Padding(1);
             this.botonDelete.Name = "botonDelete";
-            this.botonDelete.Size = new System.Drawing.Size(137, 25);
+            this.botonDelete.Size = new System.Drawing.Size(164, 25);
             this.botonDelete.TabIndex = 6;
             this.botonDelete.Text = "🗑️";
             this.botonDelete.UseVisualStyleBackColor = false;

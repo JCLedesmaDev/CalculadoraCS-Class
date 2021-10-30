@@ -75,6 +75,23 @@ namespace CalculadoraCSv2
             /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
             var btn = (Button)sender;
 
+            if (Operacion.operador != "" && 
+                Operacion.primerNumero != 0 && 
+                contador != "")
+            {
+                if (Operacion.resultado != 0)
+                {
+                   Operacion.primerNumero = Operacion.resultado;
+                    Operacion.resultado = 0;
+                }
+
+                addOperatorToCalcule(Operacion.operador);
+                ListaOperaciones.calculateOperation(Operacion);
+
+                contador = ""; /// Permite escribir nuevamente un numero de 0.
+                labelContador.Text = Operacion.resultado.ToString();
+            }
+
             ///Evitamos poder poner primero un operador.
             if (labelContador.Text != "0")
             {
@@ -87,28 +104,14 @@ namespace CalculadoraCSv2
             ///Agregamos el operador al primer termino de nuestra operacion. 
             if (calculo == "" && Operacion.resultado == 0)
             {
-                calculo = contador + " " + BtnOperador;
-                /* PD: Contador posee el "primer termino" obtenido por el metodo "showNumberScreen"*/
-
-                /// Convertimos el 1er numero a numero flotante y lo almacenamos.
-                Operacion.primerNumero = System.Convert.ToSingle(contador);
-
-                /// Mostramos operacion en pantalla.
-                showCalculeInScreen(calculo);
+                loadFirstNumber(BtnOperador);
                 return;
             }
 
             /// Se ejecutara al realizar la primera "operacion". Por ejem.: 2 + 9 = 
             if (calculo != "" && Operacion.resultado == 0)
             {
-                calculo = calculo + " " + contador + " " + BtnOperador;
-                /* PD: Contador posee el "segundo termino" obtenido por el metodo "showNumberScreen"*/
-
-                /// Convertimos el 2do numero a numero flotante.
-                Operacion.segundoNumero = System.Convert.ToSingle(contador);
-
-                /// Mostramos operacion en pantalla.
-                showCalculeInScreen(calculo);
+                loadSecondNumber(BtnOperador);
                 return;
             }
 
@@ -120,6 +123,27 @@ namespace CalculadoraCSv2
                 labelResult.Text = calculo;
                 return;
             }
+        }
+        private void loadFirstNumber (string BtnOperador)
+        {
+            calculo = contador + " " + BtnOperador;
+            /* PD: Contador posee el "primer termino" obtenido por el metodo "showNumberScreen"*/
+
+            /// Convertimos el 1er numero a numero flotante y lo almacenamos.
+            Operacion.primerNumero = System.Convert.ToSingle(contador);
+
+            /// Mostramos operacion en pantalla.
+            showCalculeInScreen(calculo);
+        }
+        private void loadSecondNumber(string BtnOperador) {
+            calculo = calculo + " " + contador + " " + BtnOperador;
+            /* PD: Contador posee el "segundo termino" obtenido por el metodo "showNumberScreen"*/
+
+            /// Convertimos el 2do numero a numero flotante.
+            Operacion.segundoNumero = System.Convert.ToSingle(contador);
+
+            /// Mostramos operacion en pantalla.
+            showCalculeInScreen(calculo);
         }
         private void showCalculeInScreen(string calculo)
         {
@@ -133,33 +157,27 @@ namespace CalculadoraCSv2
         {
             /// Manipulamos el sender para obtener el .Text del boton que ejecuta dicho metodo.
             var btn = (Button)sender;
-
             try
             {
                 /// Si no escribimos nada, no se ejecuta el igual.
-                if (Operacion.validationOperation())
+                if (Operacion.validationOperation(Operacion))
                 {
                     throw new Exception("Ingrese 2 numeros y operador.");
                 }
-
                 addOperatorToCalcule(btn.Text);
-
                 if (Operacion.resultado == 0)
                 {
                     doOperation(Operacion);
                 }
                 else {
-
                     Operacion.primerNumero = System.Convert.ToInt32(Operacion.resultado);
                     Operacion.operador = Operacion.operador;
                     Operacion.segundoNumero = System.Convert.ToInt32(contador);
 
                     doOperation(Operacion);
                 }
-
                 contador = ""; /// Permite escribir nuevamente un numero de 0.
                 labelContador.Text = Operacion.resultado.ToString();
-
             }
             catch (Exception error)
             {
@@ -256,9 +274,8 @@ namespace CalculadoraCSv2
         }
 
 
-
-        /// TODO - Error al finalizar un calculo y querer escribir un numero para emepzar de 0 
-        /// TODO - Al escribir una operacion, darle + otro numero y otro +, no funca.
+        /// TODO - BUG: Error al finalizar un calculo y querer escribir un numero para emepzar de 0 
+        /// TODO - BUG: Error al seleccionar desde el listado y seguir suamndo, no funciona la manera continua, pero si sumando de uno en uno.
 
         #endregion
 
@@ -272,6 +289,7 @@ namespace CalculadoraCSv2
                 int textoCortado = operacion.IndexOf("=") + 2;
 
                 labelResult.Text = operacion.Substring(0, textoCortado);
+                contador = "";
                 showNumberInScreen(operacion.Substring(textoCortado, longTotal - textoCortado));
             }
             else

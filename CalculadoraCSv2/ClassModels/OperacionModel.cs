@@ -18,13 +18,18 @@ namespace CalculadoraCSv2.ClassModels
 
 
         // METODOS DE VALIDACIONES
-        public bool validationOperation()
+        public bool validationOperation( OperacionModel Operacion)
         {
             bool error = false;
-            if (primerNumero == 0 && operador == "")
+            if (Operacion.primerNumero == 0 && Operacion.operador == "")
             {
                error = true;
             }
+            if ((Operacion.segundoNumero == 0 && Operacion.operador == ""))
+            {
+                error = true;
+            }
+
             return error;
         }
 
